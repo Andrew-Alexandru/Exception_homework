@@ -25,6 +25,18 @@ namespace Stream
                  Console.WriteLine(line);
                }
             }
+            string fileName_number = "correctNumbers.txt";
+            string fileName_incorrect = "incorrectNumbers.txt";
+            if (!File.Exists(fileName_number))
+            {
+                Console.WriteLine("The text file with correct numbers does not exists");
+                File.Create(fileName_number);
+            }
+            if (!File.Exists(fileName_incorrect))
+            {
+                Console.WriteLine("The text file with wrong numbers does not exists");
+                File.Create(fileName_incorrect);
+            }
             Console.ReadKey();
         }
     }
