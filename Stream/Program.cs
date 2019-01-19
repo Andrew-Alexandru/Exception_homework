@@ -13,6 +13,10 @@ namespace Stream
         {
 
             string fileName = "numbers.txt";
+            if(!File.Exists(fileName))
+            {
+                Console.WriteLine("The text file does not exists");
+            }
             using (StreamReader sr = new StreamReader(fileName))
             {
                string line;
@@ -20,8 +24,8 @@ namespace Stream
                {
                  Console.WriteLine(line);
                }
-             }
-             Console.ReadKey();
             }
+            Console.ReadKey();
         }
     }
+}
