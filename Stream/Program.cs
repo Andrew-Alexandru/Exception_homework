@@ -37,6 +37,27 @@ namespace Stream
                 Console.WriteLine("The text file with wrong numbers does not exists");
                 File.Create(fileName_incorrect);
             }
+            StreamReader st = new StreamReader(fileName);
+            string linevar;
+            double isNumeric;
+            while ((linevar = st.ReadLine()) != null)
+            {
+                if (Double.TryParse(linevar, out isNumeric))
+                {
+                    using (StreamWriter sw = new StreamWriter(fileName_number))
+                    {
+                        sw.WriteLine(isNumeric);
+                    }
+                }
+                else
+                {
+                    using (StreamWriter sw = new StreamWriter(fileName_incorrect))
+                    {
+                        sw.WriteLine(isNumeric);
+                    }
+
+                }
+            }
             Console.ReadKey();
         }
     }
