@@ -77,6 +77,7 @@ namespace Stream
             }
             foreach (var character in characters)
             {
+                Console.WriteLine("My list contains:");
                 Console.WriteLine(character);
             }
 
