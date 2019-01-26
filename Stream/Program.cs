@@ -9,6 +9,15 @@ namespace Stream
 {
     class Program
     {
+        public static int CallTryParse(string stringToConvert)
+        {
+            int number;
+            if (int.TryParse(stringToConvert, out number))
+                Console.WriteLine(number);
+            else
+                Console.WriteLine("String could not be parsed.");
+            return number;
+        }
         static void Main(string[] args)
         {
 
@@ -42,18 +51,20 @@ namespace Stream
             double isNumeric;
             while ((linevar = st.ReadLine()) != null)
             {
-                if (Double.TryParse(linevar, out isNumeric))
+                if (CallTryParse(linevar)!= null)
                 {
+                    int result = CallTryParse(linevar);
                     using (StreamWriter sw = new StreamWriter(fileName_number))
                     {
-                        sw.WriteLine(isNumeric);
+                        sw.WriteLine(result);
                     }
                 }
                 else
                 {
+                    int result = CallTryParse(linevar);
                     using (StreamWriter sw = new StreamWriter(fileName_incorrect))
                     {
-                        sw.WriteLine(isNumeric);
+                        sw.WriteLine(result);
                     }
 
                 }
