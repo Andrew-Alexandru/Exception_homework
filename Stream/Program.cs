@@ -12,11 +12,16 @@ namespace Stream
         public static int CallTryParse(string stringToConvert)
         {
             int number;
-            if (int.TryParse(stringToConvert, out number))
-                Console.WriteLine(number);
+            bool success = int.TryParse(stringToConvert, out number);
+            if (success)
+            {
+                Console.WriteLine("Succes");
+                return number;
+            }
             else
-                Console.WriteLine("String could not be parsed.");
-            return number;
+            {
+                return 0;
+            }
         }
         static void Main(string[] args)
         {
@@ -46,20 +51,13 @@ namespace Stream
                 Console.WriteLine("The text file with wrong numbers does not exists");
                 File.Create(fileName_incorrect);
             }
+            var characters = new List<string>();// add a new list
             StreamReader st = new StreamReader(fileName);
             string linevar;
-            double isNumeric;
             while ((linevar = st.ReadLine()) != null)
             {
-                if (CallTryParse(linevar)!= null)
-                {
-                    int result = CallTryParse(linevar);
-                    using (StreamWriter sw = new StreamWriter(fileName_number))
-                    {
-                        sw.WriteLine(result);
-                    }
-                }
-                else
+                characters.Add(linevar);// put in list
+                if (CallTryParse(linevar) != 0)
                 {
                     int result = CallTryParse(linevar);
                     using (StreamWriter sw = new StreamWriter(fileName_incorrect))
@@ -68,7 +66,20 @@ namespace Stream
                     }
 
                 }
+                else
+                {
+                    int result = CallTryParse(linevar);
+                    using (StreamWriter sw = new StreamWriter(fileName_number))
+                    {
+                        sw.WriteLine(result);
+                    }
+                }
             }
+            foreach (var character in characters)
+            {
+                Console.WriteLine(character);
+            }
+
             Console.ReadKey();
         }
     }
