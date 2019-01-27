@@ -13,7 +13,7 @@ namespace Stream
         {
             int number;
             bool success = int.TryParse(stringToConvert, out number);
-            if (success)
+            if (success != false)
             {
                 Console.WriteLine("Succes");
                 return number;
@@ -60,7 +60,7 @@ namespace Stream
                 if (CallTryParse(linevar) != 0)
                 {
                     int result = CallTryParse(linevar);
-                    using (StreamWriter sw = new StreamWriter(fileName_incorrect))
+                    using (StreamWriter sw = new StreamWriter(fileName_number))
                     {
                         sw.WriteLine(result);
                     }
@@ -68,10 +68,9 @@ namespace Stream
                 }
                 else
                 {
-                    int result = CallTryParse(linevar);
-                    using (StreamWriter sw = new StreamWriter(fileName_number))
+                    using (StreamWriter sw = new StreamWriter(fileName_incorrect))
                     {
-                        sw.WriteLine(result);
+                        sw.WriteLine(linevar);
                     }
                 }
             }
